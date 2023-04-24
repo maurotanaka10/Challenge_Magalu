@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody rigidBody;
+    //Componentes do Objeto
     Animator animator;
-    PlayerInput playerInput;
+    PlayerInputSystem playerInput;
     CharacterController characterController;
 
     //Movimentacao do personagem
@@ -19,20 +19,39 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private float gravity = -9.81f;
     private float verticalVelocity;
-    private float rotationVelocity = 5f;
+    private float rotationVelocity = 10f;
+    private float startNumberJumps;
 
-    [SerializeField] private float velocityWalk;
+    //Parametros do Animator
+    private int a_isWalking;
+    private int a_isJumping;
+
+    [Header("Run Variables")]
+    [SerializeField] private float velocity;
+
+    [Header("Jump Variables")]
     [SerializeField] private float numberOfJumps;
     [SerializeField] private float jumpHeight;
     [SerializeField] private Transform groundVerify;
     [SerializeField] private LayerMask sceneryMask;
+    [SerializeField] private float secondJumpTimerVariable;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = new PlayerInputSystem();
+
+        playerInput.Movement.Walk.started += OnWalkInput;
+        playerInput.Movement.Walk.canceled += OnWalkInput;
+        playerInput.Movement.Walk.performed += OnWalkInput;
+
+        playerInput.Movement.Jump.started += OnJumpInput;
+        playerInput.Movement.Jump.canceled += OnJumpInput;
+
+        startNumberJumps = numberOfJumps;
+
+        GetAnimatorParameters();
     }
 
     void Update()
@@ -45,14 +64,14 @@ public class Player : MonoBehaviour
 
     void SetMovement()
     {
-        characterController.Move(characterWalk * velocityWalk * Time.deltaTime);
+        characterController.Move(characterWalk * velocity * Time.deltaTime);
     }
 
     void SetJump()
     {
         isGrounded = Physics.CheckSphere(groundVerify.position, 0.3f, sceneryMask);
 
-        if (numberOfJumps > 0 && isGrounded)
+        if (numberOfJumps > 0)
         {
             if (jumpPressed)
             {
@@ -63,7 +82,7 @@ public class Player : MonoBehaviour
         if(isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -1f;
-            numberOfJumps = 1;
+            numberOfJumps = startNumberJumps;
         }
 
         verticalVelocity += gravity * Time.deltaTime;
@@ -83,28 +102,58 @@ public class Player : MonoBehaviour
         }
     }
 
-    void AnimationHandler()
-    {
-        if (isMoving && !animator.GetBool("isWalking"))
-        {
-            animator.SetBool("isWalking", true);
-        }
-        if (!isMoving && animator.GetBool("isWalking"))
-        {
-            animator.SetBool("isWalking", false);
-        }
-    }
-
-    public void WalkInput(InputAction.CallbackContext context)
+    public void OnWalkInput(InputAction.CallbackContext context)
     {
         characterWalkInput = context.ReadValue<Vector2>();
         characterWalk = new Vector3(characterWalkInput.x, 0, characterWalkInput.y);
 
         isMoving = characterWalkInput.x != 0 || characterWalkInput.y != 0;
     }
-
-    public void JumpInput(InputAction.CallbackContext context)
+    public void OnJumpInput(InputAction.CallbackContext context)
     {
         jumpPressed = context.ReadValueAsButton();
+    }
+
+    void GetAnimatorParameters()
+    {
+        a_isWalking = Animator.StringToHash("isWalking");
+        a_isJumping = Animator.StringToHash("isJumping");
+    }
+
+    void AnimationHandler()
+    {
+        bool isWalkingAnimation = animator.GetBool(a_isWalking);
+        bool isJumpingAnimation = animator.GetBool(a_isJumping);
+
+        if (isMoving && !isWalkingAnimation)
+        {
+            animator.SetBool(a_isWalking, true);
+        }
+        else if (!isMoving && isWalkingAnimation)
+        {
+            animator.SetBool(a_isWalking, false);
+        }
+
+        if((isMoving && isWalkingAnimation) && verticalVelocity > 0 && !isJumpingAnimation)
+        {
+            animator.SetBool(a_isJumping, true);
+        }
+        else if((!isMoving && !isWalkingAnimation) && verticalVelocity > 0 && !isJumpingAnimation)
+        {
+            animator.SetBool(a_isJumping, true);
+        }
+        else if((isMoving && isWalkingAnimation) && verticalVelocity < 0 && isJumpingAnimation)
+        {
+            animator.SetBool(a_isJumping, false);
+        }
+    }
+    private void OnEnable()
+    {
+        playerInput.Movement.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Movement.Disable();
     }
 }

@@ -20,6 +20,15 @@
                     "id": "221e2aa7-626e-43b6-96e6-472e48b8d8d3",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "WalkSlowly",
+                    "type": "Button",
+                    "id": "aeae8197-1581-4afa-8ea2-5dabd171c0ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
@@ -88,6 +97,65 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1da6cba5-9022-4106-a056-51fe1f2b7596",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WalkSlowly",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ChangePlayer",
+            "id": "0b99c665-fe36-46e1-bbcd-33377465870e",
+            "actions": [
+                {
+                    "name": "ChangeToDog",
+                    "type": "Button",
+                    "id": "438021c7-27cd-4a4e-ad85-1aeab292280f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeToNinja",
+                    "type": "Button",
+                    "id": "ee42f5d9-7b2a-410e-b941-4226e2ce2020",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1e461af8-1f4e-4662-bb26-51869cda1193",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeToDog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "236a593b-627e-4a2e-948f-95e6041c5c96",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeToNinja",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
