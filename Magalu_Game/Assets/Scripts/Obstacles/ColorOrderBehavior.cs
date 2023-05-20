@@ -8,7 +8,6 @@ public class ColorOrderBehavior : MonoBehaviour
     public bool canPressButton;
     [SerializeField] private Transform buttonPosition;
     [SerializeField] private LayerMask playerMask;
-    [SerializeField] private NinjaController ninja;
 
     [Header("Obstacles")]
     [SerializeField] private GameObject[] obstacleColor;

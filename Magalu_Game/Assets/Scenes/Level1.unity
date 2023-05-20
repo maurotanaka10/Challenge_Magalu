@@ -9255,7 +9255,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24868
+  m_Name: pb_Mesh24880
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10884,11 +10884,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b57a595e4df7144e9f4d54429bfe139, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.72
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b57a595e4df7144e9f4d54429bfe139, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.28
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b57a595e4df7144e9f4d54429bfe139, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14104,7 +14104,6 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  ninja: {fileID: 1591027344}
   obstacleColor:
   - {fileID: 1550147755}
   - {fileID: 1881477085}
@@ -16025,22 +16024,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2149aa30c8b94347bca717e468fc6f9, type: 3}
   m_PrefabInstance: {fileID: 32154444}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1535936473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535936468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb346ed4699fea74c86463e704cc68bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogWalkVelocity: 2
-  dogRunVelocity: 4
-  dogRotationVelocity: 10
-  gravity: -9.81
 --- !u!143 &1535936474
 CharacterController:
   m_ObjectHideFlags: 0
@@ -16059,6 +16042,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &1535936475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535936468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180455e8bacf10a41977e14a44679c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterVelocity: 2
+  rotationVelocity: 10
+  jumpHeight: 2
+  groundVerify: {fileID: 1556649294}
+  sceneryMask:
+    serializedVersion: 2
+    m_Bits: 128
+  gravity: -9.81
+  buttonEPressed: 0
+  ninja: {fileID: 1591027339}
+  billy: {fileID: 1535936468}
+  ninjaChosen: 0
+  ninjaIsPlaying: 1
+  billyChosen: 0
+  billyIsPlaying: 0
 --- !u!43 &1543949665
 Mesh:
   m_ObjectHideFlags: 0
@@ -18030,6 +18040,37 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1556649293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556649294}
+  m_Layer: 8
+  m_Name: GroundVerifier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556649294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556649293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1535936470}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1559931332
 Mesh:
   m_ObjectHideFlags: 0
@@ -18740,11 +18781,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1591027339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4f01a19fbc6bb41945dbe5ca34576c, type: 3}
+  m_Script: {fileID: 11500000, guid: 180455e8bacf10a41977e14a44679c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ninjaVelocity: 4
-  rotationVelocity: 7
+  characterVelocity: 2
+  rotationVelocity: 10
   jumpHeight: 1
   groundVerify: {fileID: 481381509}
   sceneryMask:
@@ -18752,6 +18793,12 @@ MonoBehaviour:
     m_Bits: 128
   gravity: -9.81
   buttonEPressed: 0
+  ninja: {fileID: 1591027339}
+  billy: {fileID: 1535936468}
+  ninjaChosen: 0
+  ninjaIsPlaying: 1
+  billyChosen: 0
+  billyIsPlaying: 0
 --- !u!1 &1675678152
 GameObject:
   m_ObjectHideFlags: 0
@@ -21216,7 +21263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874404629}
   m_LocalRotation: {x: 0.18325935, y: 0.007806656, z: -0.001455336, w: 0.9830326}
-  m_LocalPosition: {x: 0.49814776, y: 7.2609644, z: 22.92326}
+  m_LocalPosition: {x: 0.4981477, y: 2.9809651, z: -15.25674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22963,7 +23010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883902377}
   m_LocalRotation: {x: 0.18325935, y: 0.007806656, z: -0.001455336, w: 0.9830326}
-  m_LocalPosition: {x: 0.49814776, y: 7.2609644, z: 22.92326}
+  m_LocalPosition: {x: 0.4981477, y: 2.9809651, z: -15.25674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

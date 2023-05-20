@@ -2,13 +2,13 @@
     "name": "PlayerInputSystem",
     "maps": [
         {
-            "name": "Player",
-            "id": "ba6fc1bd-e111-48e1-a7cd-05807c58db49",
+            "name": "Ninja",
+            "id": "b58e4fc5-ba04-4615-8e8c-364e4589afcb",
             "actions": [
                 {
-                    "name": "Walk",
+                    "name": "Run",
                     "type": "Value",
-                    "id": "fc825684-0a77-4f8f-bb7e-7531ff1d0380",
+                    "id": "a4e323f0-8218-49a8-93eb-236688921ea4",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -17,25 +17,34 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "221e2aa7-626e-43b6-96e6-472e48b8d8d3",
+                    "id": "18c64daa-bc6c-40c6-b496-1ccc12677dae",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Run",
+                    "name": "UseObjects",
                     "type": "Button",
-                    "id": "aeae8197-1581-4afa-8ea2-5dabd171c0ad",
+                    "id": "fd786ed3-6045-4a8f-9c1b-bd1b55a87739",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseItem",
+                    "name": "Attack",
                     "type": "Button",
-                    "id": "27e69da7-4299-44a6-b1dd-295e9e42148d",
+                    "id": "1a6384fe-3abd-4cd7-832d-93adf220a021",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeToBilly",
+                    "type": "Button",
+                    "id": "e6eeb603-6c65-4498-9691-0933bb8397c6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -45,62 +54,62 @@
             "bindings": [
                 {
                     "name": "Keyboard",
-                    "id": "0e8a248d-8a71-4acb-9936-7931768ed6e0",
+                    "id": "e2743796-d951-46b2-ab2c-6ca709ce97c8",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "Run",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "6d59af8c-ef05-446f-ac57-d5dbc83cf074",
+                    "id": "a19d47b9-72a0-48b2-9be4-6799628759be",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "898f47b7-778e-4c15-a7c2-3726afe40f31",
+                    "id": "e2e14041-fb7c-4d53-91b2-692288dc61d9",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "c5453f7f-6ba8-45cb-b0c6-e4946ecce67f",
+                    "id": "715848f6-6590-45b1-badc-2b5196e9ee7f",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "5078d265-5d8d-49b4-8eb7-3051116dee08",
+                    "id": "6002108e-e3d7-4e71-809f-5fab22e9c2c7",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "9b986572-b89c-4be8-9bc2-4d3632ce39a8",
+                    "id": "7b7344cc-c8a8-4974-ae53-17a30afbf5ed",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -111,7 +120,148 @@
                 },
                 {
                     "name": "",
-                    "id": "1da6cba5-9022-4106-a056-51fe1f2b7596",
+                    "id": "66ed1b67-588d-4004-aa2e-456efd467025",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseObjects",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea3190ef-dc90-4096-8c62-0d6d706f85aa",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ceb630b2-8684-4ec1-98f6-0c9fa1e41358",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeToBilly",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Billy",
+            "id": "7fc52352-df84-4c31-ac67-3ee8f38bf773",
+            "actions": [
+                {
+                    "name": "Walk",
+                    "type": "Value",
+                    "id": "7d959792-b4bb-48ad-a219-dd0f9403d04f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "1a44c857-cec7-4c82-aade-409736fe3c2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "f80007c5-1748-4ec7-af8d-0816fe3712ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeToNinja",
+                    "type": "Button",
+                    "id": "7cd1fb44-c724-4305-a141-c40aec60483a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseObjects",
+                    "type": "Button",
+                    "id": "e6240b79-0235-4968-a8c7-df9606a5cbed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Keyboard",
+                    "id": "43cdd8db-4337-4819-b40a-5ec06535784b",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d5ec671a-de7f-49e4-b280-5c81df20cce5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b8386a4e-8cda-4704-a500-4aa4ee11bb02",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "b070d38d-ddd6-45c1-a0f3-9cc97248d092",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3954f953-4525-4d44-b10f-639d52bca6c1",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f57014c6-01b6-4a13-bc6b-50bd936fbd78",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
@@ -122,60 +272,34 @@
                 },
                 {
                     "name": "",
-                    "id": "f195cf30-e129-4e2c-9b07-1d23d4ed1eb5",
-                    "path": "<Keyboard>/e",
+                    "id": "87b155f5-834d-43d4-95ee-c9c0e53c4629",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "ChangePlayer",
-            "id": "0b99c665-fe36-46e1-bbcd-33377465870e",
-            "actions": [
-                {
-                    "name": "ChangeToDog",
-                    "type": "Button",
-                    "id": "438021c7-27cd-4a4e-ad85-1aeab292280f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeToNinja",
-                    "type": "Button",
-                    "id": "ee42f5d9-7b2a-410e-b941-4226e2ce2020",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "1e461af8-1f4e-4662-bb26-51869cda1193",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeToDog",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "236a593b-627e-4a2e-948f-95e6041c5c96",
+                    "id": "22c5c5da-3eeb-4152-9db3-8c99017a2ef9",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ChangeToNinja",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "292c5417-519d-4171-bbe0-5a525097c84a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseObjects",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
