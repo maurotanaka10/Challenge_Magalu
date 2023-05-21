@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Using Item")]
     public bool buttonEPressed;
+
+    [Header("Cinemachine")]
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
 
     [Header("Change Characters")]
     [SerializeField] private GameObject ninja;
@@ -143,21 +147,22 @@ public class PlayerController : MonoBehaviour
     {
         if (billyChosen && !billyIsPlaying)
         {
-            ninja.SetActive(false);
-            billy.SetActive(true);
             billy.transform.position = ninja.transform.position;
+            billy.SetActive(true);
+            ninja.SetActive(false);
             billyIsPlaying = true;
             ninjaIsPlaying = false;
+            playerCamera.Follow = billy.transform;
         }
 
         if (ninjaChosen && !ninjaIsPlaying)
         {
-
-            billy.SetActive(false);
-            ninja.SetActive(true);
             ninja.transform.position = billy.transform.position;
+            ninja.SetActive(true);
+            billy.SetActive(false);
             ninjaIsPlaying = true;
             billyIsPlaying = false;
+            playerCamera.Follow = ninja.transform;
         }
     }
 
@@ -199,11 +204,23 @@ public class PlayerController : MonoBehaviour
     void OnChangeToBillyInput(InputAction.CallbackContext context)
     {
         billyChosen = context.ReadValueAsButton();
+
+        if (billyChosen)
+        {
+            ninjaChosen = false;
+            ChangeCharacters();
+        }
     }
 
     void OnChangeToNinjaInput(InputAction.CallbackContext context)
     {
         ninjaChosen = context.ReadValueAsButton();
+
+        if (ninjaChosen)
+        {
+            billyChosen = false;
+            ChangeCharacters();
+        }
     }
 
     private void OnEnable()
