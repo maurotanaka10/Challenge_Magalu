@@ -360,7 +360,7 @@
 "Assets/Scripts/Camera/CameraController.cs"
 "Assets/Scripts/Characters/PlayerController.cs"
 "Assets/Scripts/Characters/Sword/SwordBehavior.cs"
-"Assets/Scripts/Coin/CoinBehavior.cs"
+"Assets/Scripts/Coin/CoinOneBehavior.cs"
 "Assets/Scripts/Enemy/EnemyController.cs"
 "Assets/Scripts/Obstacles/ColorOrderBehavior.cs"
 "Assets/Scripts/Obstacles/FallGroundBehavior.cs"

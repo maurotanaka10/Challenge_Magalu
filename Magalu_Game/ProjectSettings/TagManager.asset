@@ -7,6 +7,10 @@ TagManager:
   - ReboundWall
   - ArenaObstacle
   - Enemy
+  - EntryLabyrinth
+  - Coin1
+  - Coin2
+  - OutLabyrinth
   layers:
   - Default
   - TransparentFX

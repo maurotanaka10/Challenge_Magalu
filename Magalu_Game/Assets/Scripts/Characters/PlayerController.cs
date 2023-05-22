@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool changePlayer;
     [SerializeField] private bool ninjaIsPlaying;
     [SerializeField] private bool billyIsPlaying;
+    public bool canChangePlayer;
 
     [Header("Attack Variables")]
     [SerializeField] private GameObject sword;
@@ -137,16 +138,16 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(a_isGuarding, true);
             withSwordInHand = true;
         }
-        else if((playerIsInArena) && withSwordInHand)
+        else if ((playerIsInArena) && withSwordInHand)
         {
             animator.SetBool(a_isGuarding, false);
         }
 
-        if(isSlashing && !isSlashingAnimation)
+        if (isSlashing && !isSlashingAnimation)
         {
             animator.SetBool(a_isSlashing, true);
         }
-        else if(!isSlashing && isSlashingAnimation)
+        else if (!isSlashing && isSlashingAnimation)
         {
             animator.SetBool(a_isSlashing, false);
         }
@@ -175,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
     void ChangeCharacters()
     {
-        if (changePlayer && !billyIsPlaying)
+        if (changePlayer && ninjaIsPlaying)
         {
             billy.transform.position = ninja.transform.position;
             billy.SetActive(true);
@@ -184,8 +185,7 @@ public class PlayerController : MonoBehaviour
             ninjaIsPlaying = false;
             playerCamera.Follow = billy.transform;
         }
-
-        if (changePlayer && !ninjaIsPlaying)
+        else if (changePlayer && billyIsPlaying)
         {
             ninja.transform.position = billy.transform.position;
             ninja.SetActive(true);
@@ -245,10 +245,32 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.gameObject.tag == "ArenaObstacle")
+        if (hit.gameObject.tag == "ArenaObstacle")
         {
             playerIsInArena = true;
             sword.SetActive(true);
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EntryLabyrinth")
+        {
+            GameObject.Find("PlayerCamera").GetComponent<CameraController>().inLabyrinth = true;
+        }
+        if (other.gameObject.tag == "OutLabyrinth")
+        {
+            GameObject.Find("PlayerCamera").GetComponent<CameraController>().inLabyrinth = false;
+            GameObject.Find("PlayerCamera").GetComponent<CameraController>().outLabyrinth = true;
+        }
+
+        if (other.gameObject.tag == "Coin1")
+        {
+            GameObject.Find("CoinController").GetComponent<CoinOneBehavior>().CoinOneCollect();
+        }
+        else if (other.gameObject.tag == "Coin2")
+        {
+            GameObject.Find("CoinController").GetComponent<CoinOneBehavior>().CoinTwoCollect();
         }
     }
 
