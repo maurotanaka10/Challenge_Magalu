@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     //Animator Parameters
     private int a_isRunning;
     private int a_isJumping;
+    private int a_isGuarding;
+    private int a_isSlashing;
 
     [Header("Movement Variables")]
     private Vector2 characterMovementInput;
@@ -44,10 +46,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject ninja;
     [SerializeField] private GameObject billy;
 
-    [SerializeField] private bool ninjaChosen;
+    [SerializeField] private bool changePlayer;
     [SerializeField] private bool ninjaIsPlaying;
-    [SerializeField] private bool billyChosen;
     [SerializeField] private bool billyIsPlaying;
+
+    [Header("Attack Variables")]
+    [SerializeField] private GameObject sword;
+    private bool playerIsInArena;
+    private bool withSwordInHand = false;
+    private bool isSlashing;
 
     private void Awake()
     {
@@ -74,10 +81,11 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Billy.UseObjects.started += OnUsingItemInput;
         playerInputSystem.Billy.UseObjects.canceled += OnUsingItemInput;
 
-        playerInputSystem.Ninja.ChangeToBilly.started += OnChangeToBillyInput;
-        playerInputSystem.Ninja.ChangeToBilly.canceled += OnChangeToBillyInput;
-        playerInputSystem.Billy.ChangeToNinja.started += OnChangeToNinjaInput;
-        playerInputSystem.Billy.ChangeToNinja.canceled += OnChangeToNinjaInput;
+        playerInputSystem.ActionExtras.ChangePlayer.started += OnChangePlayerInput;
+        playerInputSystem.ActionExtras.ChangePlayer.canceled += OnChangePlayerInput;
+
+        playerInputSystem.Ninja.Attack.started += OnAttackingInput;
+        playerInputSystem.Ninja.Attack.canceled += OnAttackingInput;
     }
 
     void Update()
@@ -92,12 +100,15 @@ public class PlayerController : MonoBehaviour
     {
         a_isRunning = Animator.StringToHash("isRunning");
         a_isJumping = Animator.StringToHash("isJumping");
+        a_isGuarding = Animator.StringToHash("isGuarding");
+        a_isSlashing = Animator.StringToHash("isSlashing");
     }
 
     void AnimationHandler()
     {
         bool isRunningAnimation = animator.GetBool(a_isRunning);
         bool isJumpingAnimation = animator.GetBool(a_isJumping);
+        bool isSlashingAnimation = animator.GetBool(a_isSlashing);
 
         if (isMoving && !isRunningAnimation)
         {
@@ -119,6 +130,25 @@ public class PlayerController : MonoBehaviour
         else if (jumpPressed && isJumpingAnimation)
         {
             animator.SetBool(a_isJumping, false);
+        }
+
+        if (playerIsInArena && !withSwordInHand)
+        {
+            animator.SetBool(a_isGuarding, true);
+            withSwordInHand = true;
+        }
+        else if((playerIsInArena) && withSwordInHand)
+        {
+            animator.SetBool(a_isGuarding, false);
+        }
+
+        if(isSlashing && !isSlashingAnimation)
+        {
+            animator.SetBool(a_isSlashing, true);
+        }
+        else if(!isSlashing && isSlashingAnimation)
+        {
+            animator.SetBool(a_isSlashing, false);
         }
     }
 
@@ -145,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     void ChangeCharacters()
     {
-        if (billyChosen && !billyIsPlaying)
+        if (changePlayer && !billyIsPlaying)
         {
             billy.transform.position = ninja.transform.position;
             billy.SetActive(true);
@@ -155,7 +185,7 @@ public class PlayerController : MonoBehaviour
             playerCamera.Follow = billy.transform;
         }
 
-        if (ninjaChosen && !ninjaIsPlaying)
+        if (changePlayer && !ninjaIsPlaying)
         {
             ninja.transform.position = billy.transform.position;
             ninja.SetActive(true);
@@ -201,25 +231,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnChangeToBillyInput(InputAction.CallbackContext context)
+    void OnChangePlayerInput(InputAction.CallbackContext context)
     {
-        billyChosen = context.ReadValueAsButton();
+        changePlayer = context.ReadValueAsButton();
 
-        if (billyChosen)
-        {
-            ninjaChosen = false;
-            ChangeCharacters();
-        }
+        ChangeCharacters();
     }
 
-    void OnChangeToNinjaInput(InputAction.CallbackContext context)
+    void OnAttackingInput(InputAction.CallbackContext context)
     {
-        ninjaChosen = context.ReadValueAsButton();
+        isSlashing = context.ReadValueAsButton();
+    }
 
-        if (ninjaChosen)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "ArenaObstacle")
         {
-            billyChosen = false;
-            ChangeCharacters();
+            playerIsInArena = true;
+            sword.SetActive(true);
         }
     }
 
@@ -227,10 +256,12 @@ public class PlayerController : MonoBehaviour
     {
         playerInputSystem.Ninja.Enable();
         playerInputSystem.Billy.Enable();
+        playerInputSystem.ActionExtras.Enable();
     }
     private void OnDisable()
     {
         playerInputSystem.Ninja.Disable();
         playerInputSystem.Billy.Disable();
+        playerInputSystem.ActionExtras.Disable();
     }
 }

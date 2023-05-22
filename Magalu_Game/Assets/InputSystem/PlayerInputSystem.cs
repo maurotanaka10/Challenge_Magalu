@@ -62,15 +62,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeToBilly"",
-                    ""type"": ""Button"",
-                    ""id"": ""e6eeb603-6c65-4498-9691-0933bb8397c6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,7 +134,7 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""66ed1b67-588d-4004-aa2e-456efd467025"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -159,17 +150,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ceb630b2-8684-4ec1-98f6-0c9fa1e41358"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeToBilly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -201,15 +181,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f80007c5-1748-4ec7-af8d-0816fe3712ce"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeToNinja"",
-                    ""type"": ""Button"",
-                    ""id"": ""7cd1fb44-c724-4305-a141-c40aec60483a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -305,23 +276,40 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""22c5c5da-3eeb-4152-9db3-8c99017a2ef9"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeToNinja"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""292c5417-519d-4171-bbe0-5a525097c84a"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UseObjects"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""ActionExtras"",
+            ""id"": ""be08c371-c3e3-4e39-9feb-9a62e50e3b55"",
+            ""actions"": [
+                {
+                    ""name"": ""ChangePlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ced55af-5d51-4bf4-8240-a3c1d501c87b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9a262535-fd5a-413d-985d-05ea4098c622"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -336,14 +324,15 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         m_Ninja_Jump = m_Ninja.FindAction("Jump", throwIfNotFound: true);
         m_Ninja_UseObjects = m_Ninja.FindAction("UseObjects", throwIfNotFound: true);
         m_Ninja_Attack = m_Ninja.FindAction("Attack", throwIfNotFound: true);
-        m_Ninja_ChangeToBilly = m_Ninja.FindAction("ChangeToBilly", throwIfNotFound: true);
         // Billy
         m_Billy = asset.FindActionMap("Billy", throwIfNotFound: true);
         m_Billy_Walk = m_Billy.FindAction("Walk", throwIfNotFound: true);
         m_Billy_Run = m_Billy.FindAction("Run", throwIfNotFound: true);
         m_Billy_Jump = m_Billy.FindAction("Jump", throwIfNotFound: true);
-        m_Billy_ChangeToNinja = m_Billy.FindAction("ChangeToNinja", throwIfNotFound: true);
         m_Billy_UseObjects = m_Billy.FindAction("UseObjects", throwIfNotFound: true);
+        // ActionExtras
+        m_ActionExtras = asset.FindActionMap("ActionExtras", throwIfNotFound: true);
+        m_ActionExtras_ChangePlayer = m_ActionExtras.FindAction("ChangePlayer", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -407,7 +396,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ninja_Jump;
     private readonly InputAction m_Ninja_UseObjects;
     private readonly InputAction m_Ninja_Attack;
-    private readonly InputAction m_Ninja_ChangeToBilly;
     public struct NinjaActions
     {
         private @PlayerInputSystem m_Wrapper;
@@ -416,7 +404,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ninja_Jump;
         public InputAction @UseObjects => m_Wrapper.m_Ninja_UseObjects;
         public InputAction @Attack => m_Wrapper.m_Ninja_Attack;
-        public InputAction @ChangeToBilly => m_Wrapper.m_Ninja_ChangeToBilly;
         public InputActionMap Get() { return m_Wrapper.m_Ninja; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -438,9 +425,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_NinjaActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_NinjaActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_NinjaActionsCallbackInterface.OnAttack;
-                @ChangeToBilly.started -= m_Wrapper.m_NinjaActionsCallbackInterface.OnChangeToBilly;
-                @ChangeToBilly.performed -= m_Wrapper.m_NinjaActionsCallbackInterface.OnChangeToBilly;
-                @ChangeToBilly.canceled -= m_Wrapper.m_NinjaActionsCallbackInterface.OnChangeToBilly;
             }
             m_Wrapper.m_NinjaActionsCallbackInterface = instance;
             if (instance != null)
@@ -457,9 +441,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
-                @ChangeToBilly.started += instance.OnChangeToBilly;
-                @ChangeToBilly.performed += instance.OnChangeToBilly;
-                @ChangeToBilly.canceled += instance.OnChangeToBilly;
             }
         }
     }
@@ -471,7 +452,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Billy_Walk;
     private readonly InputAction m_Billy_Run;
     private readonly InputAction m_Billy_Jump;
-    private readonly InputAction m_Billy_ChangeToNinja;
     private readonly InputAction m_Billy_UseObjects;
     public struct BillyActions
     {
@@ -480,7 +460,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Billy_Walk;
         public InputAction @Run => m_Wrapper.m_Billy_Run;
         public InputAction @Jump => m_Wrapper.m_Billy_Jump;
-        public InputAction @ChangeToNinja => m_Wrapper.m_Billy_ChangeToNinja;
         public InputAction @UseObjects => m_Wrapper.m_Billy_UseObjects;
         public InputActionMap Get() { return m_Wrapper.m_Billy; }
         public void Enable() { Get().Enable(); }
@@ -500,9 +479,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_BillyActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_BillyActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_BillyActionsCallbackInterface.OnJump;
-                @ChangeToNinja.started -= m_Wrapper.m_BillyActionsCallbackInterface.OnChangeToNinja;
-                @ChangeToNinja.performed -= m_Wrapper.m_BillyActionsCallbackInterface.OnChangeToNinja;
-                @ChangeToNinja.canceled -= m_Wrapper.m_BillyActionsCallbackInterface.OnChangeToNinja;
                 @UseObjects.started -= m_Wrapper.m_BillyActionsCallbackInterface.OnUseObjects;
                 @UseObjects.performed -= m_Wrapper.m_BillyActionsCallbackInterface.OnUseObjects;
                 @UseObjects.canceled -= m_Wrapper.m_BillyActionsCallbackInterface.OnUseObjects;
@@ -519,9 +495,6 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @ChangeToNinja.started += instance.OnChangeToNinja;
-                @ChangeToNinja.performed += instance.OnChangeToNinja;
-                @ChangeToNinja.canceled += instance.OnChangeToNinja;
                 @UseObjects.started += instance.OnUseObjects;
                 @UseObjects.performed += instance.OnUseObjects;
                 @UseObjects.canceled += instance.OnUseObjects;
@@ -529,20 +502,55 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         }
     }
     public BillyActions @Billy => new BillyActions(this);
+
+    // ActionExtras
+    private readonly InputActionMap m_ActionExtras;
+    private IActionExtrasActions m_ActionExtrasActionsCallbackInterface;
+    private readonly InputAction m_ActionExtras_ChangePlayer;
+    public struct ActionExtrasActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+        public ActionExtrasActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ChangePlayer => m_Wrapper.m_ActionExtras_ChangePlayer;
+        public InputActionMap Get() { return m_Wrapper.m_ActionExtras; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionExtrasActions set) { return set.Get(); }
+        public void SetCallbacks(IActionExtrasActions instance)
+        {
+            if (m_Wrapper.m_ActionExtrasActionsCallbackInterface != null)
+            {
+                @ChangePlayer.started -= m_Wrapper.m_ActionExtrasActionsCallbackInterface.OnChangePlayer;
+                @ChangePlayer.performed -= m_Wrapper.m_ActionExtrasActionsCallbackInterface.OnChangePlayer;
+                @ChangePlayer.canceled -= m_Wrapper.m_ActionExtrasActionsCallbackInterface.OnChangePlayer;
+            }
+            m_Wrapper.m_ActionExtrasActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ChangePlayer.started += instance.OnChangePlayer;
+                @ChangePlayer.performed += instance.OnChangePlayer;
+                @ChangePlayer.canceled += instance.OnChangePlayer;
+            }
+        }
+    }
+    public ActionExtrasActions @ActionExtras => new ActionExtrasActions(this);
     public interface INinjaActions
     {
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnUseObjects(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnChangeToBilly(InputAction.CallbackContext context);
     }
     public interface IBillyActions
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnChangeToNinja(InputAction.CallbackContext context);
         void OnUseObjects(InputAction.CallbackContext context);
+    }
+    public interface IActionExtrasActions
+    {
+        void OnChangePlayer(InputAction.CallbackContext context);
     }
 }

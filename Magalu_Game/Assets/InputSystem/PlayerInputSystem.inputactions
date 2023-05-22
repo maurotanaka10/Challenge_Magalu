@@ -40,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeToBilly",
-                    "type": "Button",
-                    "id": "e6eeb603-6c65-4498-9691-0933bb8397c6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,7 +112,7 @@
                 {
                     "name": "",
                     "id": "66ed1b67-588d-4004-aa2e-456efd467025",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -137,17 +128,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ceb630b2-8684-4ec1-98f6-0c9fa1e41358",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeToBilly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -179,15 +159,6 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f80007c5-1748-4ec7-af8d-0816fe3712ce",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeToNinja",
-                    "type": "Button",
-                    "id": "7cd1fb44-c724-4305-a141-c40aec60483a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -283,23 +254,40 @@
                 },
                 {
                     "name": "",
-                    "id": "22c5c5da-3eeb-4152-9db3-8c99017a2ef9",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeToNinja",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "292c5417-519d-4171-bbe0-5a525097c84a",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UseObjects",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ActionExtras",
+            "id": "be08c371-c3e3-4e39-9feb-9a62e50e3b55",
+            "actions": [
+                {
+                    "name": "ChangePlayer",
+                    "type": "Button",
+                    "id": "8ced55af-5d51-4bf4-8240-a3c1d501c87b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9a262535-fd5a-413d-985d-05ea4098c622",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePlayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

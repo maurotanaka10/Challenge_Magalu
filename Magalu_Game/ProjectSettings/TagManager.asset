@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ReboundWall
+  - ArenaObstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
