@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private NavMeshAgent enemyAgent;
-    [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerManager player;
 
     [Header("State Variables")]
     [SerializeField] private float seenRadius;
