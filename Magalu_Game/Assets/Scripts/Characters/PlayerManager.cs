@@ -1,101 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
+using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager Instance;
+    public static event Action<InputAction.CallbackContext, float> HandleMoveInput;
+    public static event Action<bool, float> HandleJumpInput;
+    public static event Action<bool> HandleAttackInput;
+    public static event Action<bool> HandleUsingItemInput;
 
-    private PlayerInput _playerInput;
-    private PlayerMovement _playerMovement;
-    private PlayerAnimation _playerAnimation;
+    public delegate CharacterController CharacterControllerReference();
 
-    private bool _jumpPressed;
-    private bool _isGrounded;
-    private bool _buttonEPressed;
-    private bool _isMoving;
+    public static CharacterControllerReference CharacterControllerRef;
+
+    [SerializeField] private float _velocity;
     [SerializeField] private float _jumpHeight;
-    [SerializeField] private float _characterVelocity;
-    [SerializeField] private float _rotationVelocity;
-    private bool _isSlashing;
+    [SerializeField] private int _lives;
 
     private void Awake()
     {
-        #region Singleton
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-        #endregion
-
-        _playerInput = GetComponent<PlayerInput>();
-        _playerMovement = GetComponent<PlayerMovement>();
+        GameManager.OnMoveInputContextReceived += HandleMove;
+        GameManager.OnJumpInputContextReceived += HandleJump;
+        GameManager.OnAttackInputContextReceived += HandleAttack;
+        GameManager.OnUsingItemInputContextReceived += HandleUsingItem;
     }
 
-    public void SetCharacterMovementInput(Vector2 _characterMovementInput)
+    private void HandleMove(InputAction.CallbackContext context)
     {
-        _playerMovement.CharacterMovementInput = _characterMovementInput;
+        HandleMoveInput?.Invoke(context, _velocity);
     }
-    public Vector2 GetCharacterMovementInput()
+
+    private void HandleJump(bool jumpPressed)
     {
-        return _playerMovement.CharacterMovementInput;
+        HandleJumpInput?.Invoke(jumpPressed, _jumpHeight);
     }
-    public void SetIsMoving(bool _isMoving)
+
+    private void HandleAttack(bool attackPressed)
     {
-        this._isMoving = _isMoving;
+        HandleAttackInput?.Invoke(attackPressed);
     }
-    public bool GetIsMoving()
+
+    private void HandleUsingItem(bool buttomPressed)
     {
-        return _isMoving;
+        HandleUsingItemInput?.Invoke(buttomPressed);
     }
-    public void SetJumpPressed(bool _jumpPressed)
+
+
+    private void OnDisable()
     {
-        this._jumpPressed = _jumpPressed;
-    }
-    public bool GetJumpPressed()
-    {
-        return _jumpPressed;
-    }
-    public bool GetButtonEPressed()
-    {
-        return _buttonEPressed;
-    }
-    public void SetButtonEPressed(bool _buttonEPressed)
-    {
-        this._buttonEPressed = _buttonEPressed;
-    }
-    public bool GetIsSlashing()
-    {
-        return _isSlashing;
-    }
-    public void SetIsSlashing(bool _isSlashing)
-    {
-        this._isSlashing = _isSlashing;
-    }
-    public bool GetIsGrounded()
-    {
-        return _isGrounded;
-    }
-    public void SetIsGrounded(bool _isGrounded)
-    {
-        this._isGrounded = _isGrounded;
-    }
-    public float GetCharacterVelocity()
-    {
-        return _characterVelocity;
-    }
-    public float GetJumpHeight()
-    {
-        return _jumpHeight;
-    }
-    public float GetRotationVelocity()
-    {
-        return _rotationVelocity;
+        GameManager.OnMoveInputContextReceived -= HandleMove;
+        GameManager.OnJumpInputContextReceived -= HandleJump;
+        GameManager.OnAttackInputContextReceived -= HandleAttack;
+        GameManager.OnUsingItemInputContextReceived -= HandleUsingItem;
     }
 }

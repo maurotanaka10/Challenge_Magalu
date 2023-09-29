@@ -1,56 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    private Animator animator;
+    private NavMeshAgent _navMeshAgent;
+    private EStatesEnemy _currentState;
 
-    [SerializeField] private NavMeshAgent enemyAgent;
-    [SerializeField] private PlayerManager player;
+    public event Action<EStatesEnemy> OnIdleState;
+    public event Action<EStatesEnemy> OnPatrolState;
+    public event Action<EStatesEnemy> OnChaseState;
+    public event Action<EStatesEnemy> OnAttackState;
+    public event Action<EStatesEnemy> OnComboAttackState;
+    //public event Action<EStatesEnemy> OnHitState;
+    public event Action<EStatesEnemy> OnDieState;
+    
+    public delegate float EnemyVelocityReference();
 
-    [Header("State Variables")]
-    [SerializeField] private float seenRadius;
-    public float life;
+    public static EnemyVelocityReference EnemyVelocity;
 
     private void Awake()
     {
-        enemyAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _currentState = EStatesEnemy.Patrol;
+        //_navMeshAgent.speed = EnemyVelocity();
     }
 
-    void Update()
+    private void Update()
     {
-        if (CheckIfPlayerIsSeen())
+        StatesController();
+    }
+
+    private void StatesController()
+    {
+        switch (_currentState)
         {
-            AttackPlayer();
+            case EStatesEnemy.Idle:
+                IdleHandler();
+                break;
+            case EStatesEnemy.Patrol:
+                PatrolHandler();
+                break;
+            case EStatesEnemy.Chase:
+                ChaseHandler();
+                break;
+            case EStatesEnemy.Attack:
+                AttackHandler();
+                break;
+            case EStatesEnemy.ComboAttack:
+                ComboAttackHandler();
+                break;
+            case EStatesEnemy.Die:
+                DieHandler();
+                break;
         }
-
-        if(life <= 0)
-        {
-            gameObject.SetActive(false);
-        }
-
-        EnemyAnimationHandler();
     }
 
-    void AttackPlayer()
+    private void IdleHandler()
     {
-        enemyAgent.SetDestination(player.transform.position);
+        OnIdleState?.Invoke(_currentState);
     }
 
-    private bool CheckIfPlayerIsSeen()
+    private void PatrolHandler()
     {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        return distance < seenRadius;
+        OnPatrolState?.Invoke(_currentState);
     }
 
-    void EnemyAnimationHandler()
+    private void ChaseHandler()
     {
-        if (CheckIfPlayerIsSeen())
-        {
-            animator.SetBool("isChasingPlayer", true);
-        }
+        OnChaseState?.Invoke(_currentState);
+    }
+
+    private void AttackHandler()
+    {
+        OnAttackState?.Invoke(_currentState);
+    }
+
+    private void ComboAttackHandler()
+    {
+        OnComboAttackState?.Invoke(_currentState);
+    }
+
+    private void DieHandler()
+    {
+        OnDieState?.Invoke(_currentState);
     }
 }

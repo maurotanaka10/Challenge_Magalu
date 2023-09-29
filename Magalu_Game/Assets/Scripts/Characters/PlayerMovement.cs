@@ -1,71 +1,97 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController _characterController;
+    public CharacterController characterController;
 
     [Header("Movement Variables")]
-    public Vector2 CharacterMovementInput;
+    private Vector2 _characterMovementInput;
     private Vector3 _characterMovement;
     private Vector3 _positionToLookAt;
 
-    [Header("Jump Variables")]
-    [SerializeField] private Transform _groundVerify;
-    [SerializeField] private LayerMask _sceneryMask;
-
     [Header("Physics")]
-    [SerializeField] private float gravity = -9.81f;
-    private float _verticalVelocity;
+    private const float _gravity = -9.81f;
+    private float _gravityVelocity;
+
+    private float _playerVelocity;
+    private bool _isMoving;
+    [SerializeField] private float _gravityMultiplier;
+    [SerializeField] private float _rotationVelocity;
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
+
+        PlayerManager.HandleMoveInput += SetMoveInfo;
+        PlayerManager.HandleJumpInput += SetCharacterJump;
+        PlayerManager.CharacterControllerRef = GetCharacterController;
     }
 
     private void Update()
     {
-        SetMovement();
-        RotationHandler();
-        SetJump();
+        SetCharacterMovement(_characterMovementInput);
+        GravityHandler();
     }
 
-    private void SetMovement()
+    private void SetCharacterJump(bool jumpPressed, float jumpHeight)
     {
-        _characterMovement = new Vector3(PlayerManager.Instance.GetCharacterMovementInput().x, _verticalVelocity, PlayerManager.Instance.GetCharacterMovementInput().y);
+        if(!jumpPressed) return;
+        if(!characterController.isGrounded) return;
 
-        PlayerManager.Instance.SetIsMoving(PlayerManager.Instance.GetCharacterMovementInput().x != 0 || PlayerManager.Instance.GetCharacterMovementInput().y != 0);
-
-        _characterController.Move(_characterMovement * PlayerManager.Instance.GetCharacterVelocity() * Time.deltaTime);
-
-        _verticalVelocity += gravity * Time.deltaTime;
+        _gravityVelocity = jumpHeight;
     }
 
+    private void SetMoveInfo(InputAction.CallbackContext context, float velocity)
+    {
+        _playerVelocity = velocity;
+        _characterMovementInput = context.ReadValue<Vector2>();
+        _isMoving = _characterMovementInput.x != 0 || _characterMovementInput.y != 0;
+    }
+
+    private void SetCharacterMovement(Vector2 _characterMovementInput)
+    {
+        _characterMovement = new Vector3(this._characterMovementInput.x, _gravityVelocity, _characterMovementInput.y);
+        characterController.Move(_characterMovement * (_playerVelocity * Time.deltaTime));
+        RotationHandler();
+    }
+
+    private void GravityHandler()
+    {
+        if (characterController.isGrounded && _gravityVelocity < 0f)
+        {
+            _gravityVelocity = -1f;
+        }
+        else
+        {
+            _gravityVelocity += _gravity * _gravityMultiplier * Time.deltaTime;
+        }
+        _characterMovement.y = _gravityVelocity;
+    }
+    
     private void RotationHandler()
     {
         _positionToLookAt = new Vector3(_characterMovement.x, 0, _characterMovement.z);
         Quaternion currentRotation = transform.rotation;
 
-        if (PlayerManager.Instance.GetIsMoving())
+        if (_isMoving)
         {
             Quaternion lookAtRotation = Quaternion.LookRotation(_positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, lookAtRotation, PlayerManager.Instance.GetRotationVelocity() * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(currentRotation, lookAtRotation, _rotationVelocity * Time.deltaTime);
         }
     }
 
-    private void SetJump()
+    private CharacterController GetCharacterController()
     {
-        PlayerManager.Instance.SetIsGrounded(Physics.CheckSphere(_groundVerify.position, 0.3f, _sceneryMask));
+        return characterController;
+    }
 
-        if (PlayerManager.Instance.GetJumpPressed() && PlayerManager.Instance.GetIsGrounded())
-        {
-            _verticalVelocity = Mathf.Sqrt(PlayerManager.Instance.GetJumpHeight() * -2f * gravity);
-        }
-
-        if (PlayerManager.Instance.GetIsGrounded() && _verticalVelocity < 0)
-        {
-            _verticalVelocity = -1f;
-        }
+    private void OnDisable()
+    {
+        PlayerManager.HandleMoveInput -= SetMoveInfo;
+        PlayerManager.HandleJumpInput -= SetCharacterJump;
     }
 }

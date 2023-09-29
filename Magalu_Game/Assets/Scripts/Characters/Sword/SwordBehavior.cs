@@ -17,6 +17,6 @@ public class SwordBehavior : MonoBehaviour
 
     void SetDamage()
     {
-        GameObject.Find("Enemy").GetComponent<EnemyController>().life -= damageSword;
+        //GameObject.Find("Enemy").GetComponent<EnemyController>().life -= damageSword;
     }
 }
