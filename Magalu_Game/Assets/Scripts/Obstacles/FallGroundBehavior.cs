@@ -31,6 +31,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle1Index != 1)
                     {
+                        print("pisou no errado");
                         rigidBody.useGravity = true;
                     }
                 }

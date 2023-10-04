@@ -42,11 +42,6 @@ public class InputManager : MonoBehaviour
     void OnUsingItemInput(InputAction.CallbackContext context)
     {
         OnUsingItem?.Invoke(context.ReadValueAsButton());
-
-       /* if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().canPressButton == true && PlayerManager.Instance.GetButtonEPressed())
-        {
-            GameObject.Find("Button").GetComponent<ColorOrderBehavior>().ShowChallenge();
-        }*/
     }
     void OnAttackingInput(InputAction.CallbackContext context)
     {

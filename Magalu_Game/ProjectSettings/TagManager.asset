@@ -11,6 +11,9 @@ TagManager:
   - Coin1
   - Coin2
   - OutLabyrinth
+  - Enviroment
+  - FallTrigger
+  - StageOneComplete
   layers:
   - Default
   - TransparentFX

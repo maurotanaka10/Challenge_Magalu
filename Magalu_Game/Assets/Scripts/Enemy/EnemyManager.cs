@@ -13,9 +13,12 @@ public class EnemyManager : MonoBehaviour
     public static event Action<EStatesEnemy> OnDieStateReceived;
 
     [SerializeField] private float _enemyVelocity;
+    [SerializeField] private int _enemyLife;
+    
     private void Awake()
     {
         EnemyController.EnemyVelocity = GetEnemyVelocity;
+        EnemyController.EnemyLife = GetEnemyLife;
         _enemyController.OnIdleState += OnIdleStateHandler;
         _enemyController.OnPatrolState += OnPatrolStateHandler;
         _enemyController.OnChaseState += OnChaseStateHandler;
@@ -57,6 +60,11 @@ public class EnemyManager : MonoBehaviour
     private float GetEnemyVelocity()
     {
         return _enemyVelocity;
+    }
+
+    private int GetEnemyLife()
+    {
+        return _enemyLife;
     }
 
     private void OnDisable()

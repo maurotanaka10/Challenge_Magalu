@@ -1,28 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LaserBehavior : MonoBehaviour
 {
-    [SerializeField] private float laserVelocity;
-    [SerializeField] private Transform startPoint;
+     [SerializeField] private float laserVelocity;
+    
+       public event Action<bool> OnPlayerDeath;
+
+       private bool _playerIsDeath;
+
+    public delegate float LaserVelocityReference();
+
+    public static LaserVelocityReference LaserVelocity;
+
+    private void Awake()
+    {
+        _playerIsDeath = false;
+    }
 
     void Update()
     {
-        transform.Translate(Vector3.right.normalized * laserVelocity * Time.deltaTime);
+        transform.Translate(Vector3.right.normalized * (laserVelocity * Time.deltaTime));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "ReboundWall")
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            print("laser acertou o player");
+            _playerIsDeath = true;
+            OnPlayerDeath?.Invoke(_playerIsDeath);
+        }
+        else if (collision.gameObject.CompareTag("Enviroment"))
         {
             laserVelocity *= -1;
-        }
-
-        if(collision.gameObject.tag == "Player")
-        {
-            SceneManager.LoadScene("Level1");
+            _playerIsDeath = false;
+            OnPlayerDeath?.Invoke(_playerIsDeath);
         }
     }
 }

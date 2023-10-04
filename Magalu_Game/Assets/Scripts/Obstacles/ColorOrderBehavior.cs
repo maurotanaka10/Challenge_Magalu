@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ColorOrderBehavior : MonoBehaviour
 {
@@ -16,15 +18,20 @@ public class ColorOrderBehavior : MonoBehaviour
     [SerializeField] private Color blueColor;
     [SerializeField] private Color StartColor;
     public int obstacle1Index, obstacle2Index, obstacle3Index, obstacle4Index;
-    
+
+    private void Awake()
+    {
+        ObstacleManager.OnUsingItemHandler += ShowChallenge;
+    }
+
+    private void ShowChallenge(bool context)
+    {
+        StartCoroutine(StartChallenge());
+    }
+
     void Update()
     {
         canPressButton = Physics.CheckSphere(buttonPosition.position, 3f, playerMask);
-    }
-
-    public void ShowChallenge()
-    {
-        StartCoroutine(StartChallenge());
     }
 
     IEnumerator StartChallenge()
@@ -82,6 +89,10 @@ public class ColorOrderBehavior : MonoBehaviour
         obstacleColor[1].GetComponent<Renderer>().material.color = StartColor;
         obstacleColor[2].GetComponent<Renderer>().material.color = StartColor;
         obstacleColor[3].GetComponent<Renderer>().material.color = StartColor;
+    }
 
+    private void OnDisable()
+    {
+        ObstacleManager.OnUsingItemHandler -= ShowChallenge;
     }
 }

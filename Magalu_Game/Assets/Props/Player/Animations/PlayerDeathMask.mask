@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerDeathMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Controls1
+    m_Weight: 1
+  - m_Path: Controls1/Master
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null/L_Mid_Base_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null/L_Mid_Base_Ctrl/L_Mid_Mid_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null/L_Mid_Base_Ctrl/L_Mid_Mid_Null/L_Mid_Mid_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null/L_Mid_Base_Ctrl/L_Mid_Mid_Null/L_Mid_Mid_Ctrl/L_Mid_Tips_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/L_Arm_Ctrl/L_Clavicle_Null/L_Clavicle_Ctrl/L_Shoulder_Null/L_Shoulder_Ctrl/L_Elbow_Null/L_Elbow_Ctrl/L_Hand_Null/L_Hand_Ctrl/L_Finger_Ctrl_Null/L_Mid_Base_Null/L_Mid_Base_Ctrl/L_Mid_Mid_Null/L_Mid_Mid_Ctrl/L_Mid_Tips_Null/L_Mid_Tips_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/Neck_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/Neck_Null/Neck_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/Neck_Null/Neck_Ctrl/Head_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/Neck_Null/Neck_Ctrl/Head_Null/Head_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null/R_Mid_Base_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null/R_Mid_Base_Ctrl/R_Mid_Mid_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null/R_Mid_Base_Ctrl/R_Mid_Mid_Null/R_Mid_Mid_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null/R_Mid_Base_Ctrl/R_Mid_Mid_Null/R_Mid_Mid_Ctrl/R_Mid_Tips_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/R_Arm_Ctrl/R_Clavicle_Null/R_Clavicle_Ctrl/R_Shoulder_Null/R_Shoulder_Ctrl/R_Elbow_Null/R_Elbow_Ctrl/R_Hand_Null/R_Hand_Ctrl/R_Finger_Ctrl_Null/R_Mid_Base_Null/R_Mid_Base_Ctrl/R_Mid_Mid_Null/R_Mid_Mid_Ctrl/R_Mid_Tips_Null/R_Mid_Tips_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Torax_OffSet/Torax_Ctrl/Torax_Helper
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Waist_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/Body_Null/Body_Ctrl/Waist_Ctrl/Waist_Helper
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null/BallAnkle_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null/BallAnkle_Null/L_Ankle_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null/BallToe_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null/BallToe_Null/L_Toe_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Foot_Ctrl/AnkleToe_Null/BallY_Null/ToeAnkle_Null/L_Ball_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/L_Foot_Null/L_Knee_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1/BallAnkle_Null1
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1/BallAnkle_Null1/R_Ankle_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1/BallToe_Null1
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1/BallToe_Null1/R_Toe_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Foot_Ctrl/AnkleToe_Null1/BallY_Null1/ToeAnkle_Null1/R_Ball_IK
+    m_Weight: 1
+  - m_Path: Controls1/Master/R_Foot_Null/R_Knee_Ctrl
+    m_Weight: 1
+  - m_Path: Geometry1
+    m_Weight: 1
+  - m_Path: Geometry1/NinjaMAYA3
+    m_Weight: 1
+  - m_Path: Geometry1/pSphere1
+    m_Weight: 1
+  - m_Path: Geometry1/pSphere2
+    m_Weight: 1
+  - m_Path: Invisible
+    m_Weight: 1
+  - m_Path: Invisible/Back_Curve
+    m_Weight: 1
+  - m_Path: Invisible/Back_IK
+    m_Weight: 1
+  - m_Path: Joints
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:LeftUpLeg
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:RightUpLeg
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandIndex1
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandIndex1/mixamorig:LeftHandIndex2
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandIndex1/mixamorig:LeftHandIndex2/mixamorig:LeftHandIndex3
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandIndex1/mixamorig:LeftHandIndex2/mixamorig:LeftHandIndex3/mixamorig:LeftHandIndex4
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1/mixamorig:RightHandIndex2
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1/mixamorig:RightHandIndex2/mixamorig:RightHandIndex3
+    m_Weight: 1
+  - m_Path: Joints/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1/mixamorig:RightHandIndex2/mixamorig:RightHandIndex3/mixamorig:RightHandIndex4
+    m_Weight: 1

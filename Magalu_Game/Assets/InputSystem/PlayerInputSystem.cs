@@ -62,6 +62,15 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""7b75c35a-1e5e-4fcf-b99a-2cc11e7a3b5c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b5da49d-ca6b-4457-ac03-a246629facf1"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2"",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_Ninja_Jump = m_Ninja.FindAction("Jump", throwIfNotFound: true);
         m_Ninja_UseObjects = m_Ninja.FindAction("UseObjects", throwIfNotFound: true);
         m_Ninja_Attack = m_Ninja.FindAction("Attack", throwIfNotFound: true);
+        m_Ninja_Camera = m_Ninja.FindAction("Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ninja_Jump;
     private readonly InputAction m_Ninja_UseObjects;
     private readonly InputAction m_Ninja_Attack;
+    private readonly InputAction m_Ninja_Camera;
     public struct NinjaActions
     {
         private @PlayerInputSystem m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ninja_Jump;
         public InputAction @UseObjects => m_Wrapper.m_Ninja_UseObjects;
         public InputAction @Attack => m_Wrapper.m_Ninja_Attack;
+        public InputAction @Camera => m_Wrapper.m_Ninja_Camera;
         public InputActionMap Get() { return m_Wrapper.m_Ninja; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Camera.started += instance.OnCamera;
+            @Camera.performed += instance.OnCamera;
+            @Camera.canceled += instance.OnCamera;
         }
 
         private void UnregisterCallbacks(INinjaActions instance)
@@ -274,6 +300,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Camera.started -= instance.OnCamera;
+            @Camera.performed -= instance.OnCamera;
+            @Camera.canceled -= instance.OnCamera;
         }
 
         public void RemoveCallbacks(INinjaActions instance)
@@ -297,5 +326,6 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnUseObjects(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
     }
 }
