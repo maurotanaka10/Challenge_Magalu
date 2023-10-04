@@ -6,11 +6,19 @@ using UnityEngine.Serialization;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private SpawnBehavior _spawnBehavior;
+
+    #region Actions
+
     public static event Action<InputAction.CallbackContext, float> HandleMoveInput;
     public static event Action<bool, float> HandleJumpInput;
     public static event Action<bool> HandleAttackInput;
     public static event Action<bool> HandleUsingItemInput;
-    public static event Action<bool> HandlePlayerDeath; 
+    public static event Action<bool> HandlePlayerDeath;
+    public event Action<bool> HandleStageComplete;
+
+    #endregion
+
+    #region Delegates
 
     public delegate CharacterController CharacterControllerReference();
 
@@ -19,9 +27,15 @@ public class PlayerManager : MonoBehaviour
     public static CharacterControllerReference CharacterControllerRef;
     public static PlayerPositionReference PlayerPositionRef;
 
+    #endregion
+
+    #region Player Variables
+
     [SerializeField] private float _velocity;
     [SerializeField] private float _jumpHeight;
-    [SerializeField] private int _lives;
+    [SerializeField] private int _lifes;
+
+    #endregion
 
     private void Awake()
     {
@@ -30,13 +44,20 @@ public class PlayerManager : MonoBehaviour
         GameManager.OnAttackInputContextReceived += HandleAttack;
         GameManager.OnUsingItemInputContextReceived += HandleUsingItem;
         GameManager.OnPlayerDeathReceived += HandleDeath;
+        _spawnBehavior.OnStageComplete += HandleStages;
         _spawnBehavior.OnPlayerDeath += HandleDeath;
+        GameManager.PlayerLifeRef = GetPlayerLifes;
+    }
+
+    private void HandleStages(bool stageComplete)
+    {
+        HandleStageComplete?.Invoke(stageComplete);
     }
 
     private void HandleDeath(bool playerDeath)
     {
         HandlePlayerDeath?.Invoke(playerDeath);
-        if (playerDeath) _lives--;
+        if (playerDeath) _lifes--;
     }
 
     private void HandleMove(InputAction.CallbackContext context)
@@ -59,6 +80,11 @@ public class PlayerManager : MonoBehaviour
         HandleUsingItemInput?.Invoke(buttomPressed);
     }
 
+    private int GetPlayerLifes()
+    {
+        return _lifes;
+    }
+
 
     private void OnDisable()
     {
@@ -66,5 +92,8 @@ public class PlayerManager : MonoBehaviour
         GameManager.OnJumpInputContextReceived -= HandleJump;
         GameManager.OnAttackInputContextReceived -= HandleAttack;
         GameManager.OnUsingItemInputContextReceived -= HandleUsingItem;
+        GameManager.OnPlayerDeathReceived -= HandleDeath;
+        _spawnBehavior.OnStageComplete -= HandleStages;
+        _spawnBehavior.OnPlayerDeath -= HandleDeath;
     }
 }

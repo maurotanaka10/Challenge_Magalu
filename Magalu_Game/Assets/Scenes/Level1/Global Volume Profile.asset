@@ -56,7 +56,8 @@ MonoBehaviour:
   - {fileID: 243029325414341998}
   - {fileID: 3703740385446611949}
   - {fileID: -913813150262237968}
-  - {fileID: 8810893621852874962}
+  - {fileID: 6334879381736837011}
+  - {fileID: 8459553336283458965}
 --- !u!114 &243029325414341998
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -72,7 +73,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.29
   contrast:
     m_OverrideState: 0
     m_Value: 0
@@ -100,14 +101,14 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.99954164, y: 0.991994, z: 1, w: 0}
+    m_Value: {x: 0.9778985, y: 0.9658933, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.93048155, y: 0.96001714, z: 1, w: 0}
+    m_Value: {x: 0.95344037, y: 0.9622342, z: 1, w: 0}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9717645, z: 0.9161087, w: 0}
---- !u!114 &8810893621852874962
+    m_Value: {x: 1, y: 0.9740651, z: 0.9374196, w: 0}
+--- !u!114 &6334879381736837011
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,41 +117,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
-  m_Name: Bloom
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
   active: 1
-  skipIterations:
+  shadows:
     m_OverrideState: 1
-    m_Value: 1
-  threshold:
+    m_Value: {x: 0.9840535, y: 0.99104625, z: 1, w: -0.0720907}
+  midtones:
     m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.13388258}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 1}
+  shadowsStart:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 0
+    m_Value: 0.3
+  highlightsStart:
+    m_OverrideState: 0
+    m_Value: 0.55
+  highlightsEnd:
+    m_OverrideState: 0
     m_Value: 1
+--- !u!114 &8459553336283458965
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf1aba9553839d41ae37dd52e9ebcce, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 0
+    m_Value: 0
+  quality:
+    m_OverrideState: 1
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
-  scatter:
-    m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0.206
   clamp:
     m_OverrideState: 1
-    m_Value: 65472
-  tint:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  highQualityFiltering:
-    m_OverrideState: 1
-    m_Value: 0
-  downscale:
-    m_OverrideState: 0
-    m_Value: 0
-  maxIterations:
-    m_OverrideState: 0
-    m_Value: 6
-  dirtTexture:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 1
-  dirtIntensity:
-    m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.065

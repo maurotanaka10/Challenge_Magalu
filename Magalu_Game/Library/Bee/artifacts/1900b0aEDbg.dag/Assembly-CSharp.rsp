@@ -405,18 +405,19 @@
 "Assets/Scripts/Characters/Components/SpawnBehavior.cs"
 "Assets/Scripts/Characters/InputManager.cs"
 "Assets/Scripts/Characters/PlayerManager.cs"
-"Assets/Scripts/Characters/Sword/SwordBehavior.cs"
 "Assets/Scripts/Enemy/EnemyAnimations.cs"
 "Assets/Scripts/Enemy/EnemyController.cs"
 "Assets/Scripts/Enemy/EnemyManager.cs"
 "Assets/Scripts/Enemy/EStatesEnemy.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Light/BlinkLight.cs"
 "Assets/Scripts/Light/LightMovementBehavior.cs"
 "Assets/Scripts/Light/PlayerLight.cs"
 "Assets/Scripts/Obstacles/ColorOrderBehavior.cs"
 "Assets/Scripts/Obstacles/FallGroundBehavior.cs"
 "Assets/Scripts/Obstacles/LaserBehavior.cs"
 "Assets/Scripts/Obstacles/ObstacleManager.cs"
+"Assets/Scripts/UI/UIManager.cs"
 -langversion:9.0
 
 /deterministic

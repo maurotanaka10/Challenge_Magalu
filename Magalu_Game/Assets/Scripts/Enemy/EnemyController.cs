@@ -63,7 +63,6 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         StatesController();
-        print($"O boss esta no estagio {_currentState}");
 
         _distanceFromPlayer = 0;
         _playerPosition = Vector3.zero;

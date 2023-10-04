@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!jumpPressed) return;
         if(!characterController.isGrounded) return;
-
+        
         _gravityVelocity = jumpHeight;
     }
 

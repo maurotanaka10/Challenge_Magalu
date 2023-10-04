@@ -8,6 +8,7 @@ public class PlayerAttackComponent : MonoBehaviour
     [SerializeField] private BoxCollider _boxCollider;
 
     private int _enemyLifes;
+    private bool _isInvulnerable;
 
     private void Awake()
     {
@@ -22,7 +23,8 @@ public class PlayerAttackComponent : MonoBehaviour
         if (attackPressed)
         {
             _playerSword.SetActive(true);
-            _boxCollider.enabled = true;
+            _boxCollider.enabled = attackPressed;
+            _isInvulnerable = true;
         }
     }
 
@@ -30,6 +32,7 @@ public class PlayerAttackComponent : MonoBehaviour
     {
         _playerSword.SetActive(false);
         _boxCollider.enabled = false;
+        _isInvulnerable = false;
     }
 
     private void OnTriggerEnter(Collider other)
