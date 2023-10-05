@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     public static event Action<EStatesEnemy> OnDieStateReceived;
 
     [SerializeField] private float _enemyVelocity;
-    [SerializeField] private int _enemyLife;
+    [SerializeField] public int _enemyLife;
     
     private void Awake()
     {

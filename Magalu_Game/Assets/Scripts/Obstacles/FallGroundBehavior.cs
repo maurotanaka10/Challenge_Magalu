@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FallGroundBehavior : MonoBehaviour
 {
-    private Rigidbody rigidBody;
     private MeshRenderer _meshRenderer;
+    [SerializeField] private BoxCollider _boxCollider;
 
     [Header("Indentifier Ground")]
     [SerializeField] private bool isRedGround;
@@ -19,7 +19,6 @@ public class FallGroundBehavior : MonoBehaviour
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
         _meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -33,7 +32,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle1Index != 1)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -44,7 +43,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle2Index != 1)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -55,7 +54,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle3Index != 1)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -66,7 +65,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle4Index != 1)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -81,7 +80,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle1Index != 2)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -92,7 +91,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle2Index != 2)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -103,7 +102,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle3Index != 2)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }
@@ -114,7 +113,7 @@ public class FallGroundBehavior : MonoBehaviour
                 {
                     if (GameObject.Find("Button").GetComponent<ColorOrderBehavior>().obstacle4Index != 2)
                     {
-                        rigidBody.useGravity = true;
+                        _boxCollider.enabled = false;
                         _meshRenderer.enabled = false;
                     }
                 }

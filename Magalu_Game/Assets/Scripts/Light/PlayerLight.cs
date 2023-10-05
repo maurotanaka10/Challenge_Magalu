@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerLight : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] private Transform _player;
 
     private void Update()
     {

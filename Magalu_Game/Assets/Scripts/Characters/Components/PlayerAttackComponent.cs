@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerAttackComponent : MonoBehaviour
 {
+    [SerializeField] private EnemyManager _enemyManager;
+
     [SerializeField] private GameObject _playerSword;
-    [SerializeField] private BoxCollider _boxCollider;
+    [SerializeField] private Transform _swordPosition;
+    [SerializeField] private float _attackRange;
+    [SerializeField] private LayerMask _enemyMask;
 
     private int _enemyLifes;
     private bool _isInvulnerable;
@@ -13,7 +17,6 @@ public class PlayerAttackComponent : MonoBehaviour
     private void Awake()
     {
         _playerSword.SetActive(false);
-        _boxCollider.enabled = false;
 
         PlayerManager.HandleAttackInput += AttackHandler;
     }
@@ -23,26 +26,28 @@ public class PlayerAttackComponent : MonoBehaviour
         if (attackPressed)
         {
             _playerSword.SetActive(true);
-            _boxCollider.enabled = attackPressed;
             _isInvulnerable = true;
+
+            Collider[] hittedEnemies = Physics.OverlapSphere(_swordPosition.position, _attackRange, _enemyMask);
+            foreach(Collider hittedEnemy in hittedEnemies)
+            {
+                _enemyManager._enemyLife--;
+                print("acertou um inimigo");
+            }
         }
     }
 
     private void SetActionFalseSword()
     {
         _playerSword.SetActive(false);
-        _boxCollider.enabled = false;
         _isInvulnerable = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDrawGizmos()
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            _enemyLifes = EnemyController.EnemyLife();
-            _enemyLifes--;
-            print("jogador acertou o inimigo");
-        }
+        if (_swordPosition == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_swordPosition.position, _attackRange);
     }
 
     private void OnDisable()
