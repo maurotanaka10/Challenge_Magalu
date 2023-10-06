@@ -6,12 +6,13 @@ using UnityEngine;
 public class SpawnBehavior : MonoBehaviour
 {
     public event Action<bool> OnPlayerDeath;
-    public event Action<bool> OnStageComplete;
     
     private CharacterController _characterControllerRef;
 
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Vector3[] _spawnPosition;
     [SerializeField] private GameObject[] _stagesColliders;
+    [SerializeField] private CapsuleCollider _capsuleCollider;
 
     private bool _firstStageComplete;
     private bool _secondStageComplete;
@@ -33,10 +34,10 @@ public class SpawnBehavior : MonoBehaviour
 
     private void SetRespawnPlayer(bool playerDeath)
     {
-        _playerIsDeath = false;
-        if (!playerDeath)
-            return;
-        StartCoroutine(TimerToRespawnPlayer());
+            _playerIsDeath = false;
+            if (!playerDeath)
+                return;
+            StartCoroutine(TimerToRespawnPlayer());
     }
 
     private IEnumerator TimerToRespawnPlayer()
@@ -49,6 +50,8 @@ public class SpawnBehavior : MonoBehaviour
 
     private void RespawnPosition()
     {
+        if (_gameManager._gameIsOver) return;
+        
         if (!_firstStageComplete && !_secondStageComplete)
         {
             transform.position = _spawnPosition[0];
@@ -57,7 +60,7 @@ public class SpawnBehavior : MonoBehaviour
         {
             transform.position = _spawnPosition[1];
         }
-        else if(_firstStageComplete && _secondStageComplete)
+        else if (_firstStageComplete && _secondStageComplete)
         {
             transform.position = _spawnPosition[2];
         }
@@ -73,15 +76,19 @@ public class SpawnBehavior : MonoBehaviour
         if (other.gameObject.CompareTag("StageOneComplete"))
         {
             _firstStageComplete = true;
-            OnStageComplete?.Invoke(other);
             _stagesColliders[0].SetActive(false);
         }
 
         if (other.gameObject.CompareTag("StageTwoComplete"))
         {
             _secondStageComplete = true;
-            OnStageComplete?.Invoke(other);
             _stagesColliders[1].SetActive(false);
+            _capsuleCollider.enabled = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerManager.HandlePlayerDeath -= SetRespawnPlayer;
     }
 }

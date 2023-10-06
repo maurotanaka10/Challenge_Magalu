@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private SpawnBehavior _spawnBehavior;
+    [SerializeField] private PlayerAudio _playerAudio;
 
     #region Actions
 
@@ -14,7 +15,6 @@ public class PlayerManager : MonoBehaviour
     public static event Action<bool> HandleAttackInput;
     public static event Action<bool> HandleUsingItemInput;
     public static event Action<bool> HandlePlayerDeath;
-    public event Action<bool> HandleStageComplete;
 
     #endregion
 
@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private float _velocity;
     [SerializeField] private float _jumpHeight;
-    [SerializeField] private int _lifes;
+    [SerializeField] public int _lifes;
 
     #endregion
 
@@ -44,20 +44,20 @@ public class PlayerManager : MonoBehaviour
         GameManager.OnAttackInputContextReceived += HandleAttack;
         GameManager.OnUsingItemInputContextReceived += HandleUsingItem;
         GameManager.OnPlayerDeathReceived += HandleDeath;
-        _spawnBehavior.OnStageComplete += HandleStages;
         _spawnBehavior.OnPlayerDeath += HandleDeath;
         GameManager.PlayerLifeRef = GetPlayerLifes;
     }
-
-    private void HandleStages(bool stageComplete)
-    {
-        HandleStageComplete?.Invoke(stageComplete);
-    }
-
+    
     private void HandleDeath(bool playerDeath)
     {
+        if (_lifes == 0)
+        {
+            playerDeath = false;
+        }
+
+        if (playerDeath)
+            _lifes--;
         HandlePlayerDeath?.Invoke(playerDeath);
-        if (playerDeath) _lifes--;
     }
 
     private void HandleMove(InputAction.CallbackContext context)
@@ -93,7 +93,6 @@ public class PlayerManager : MonoBehaviour
         GameManager.OnAttackInputContextReceived -= HandleAttack;
         GameManager.OnUsingItemInputContextReceived -= HandleUsingItem;
         GameManager.OnPlayerDeathReceived -= HandleDeath;
-        _spawnBehavior.OnStageComplete -= HandleStages;
         _spawnBehavior.OnPlayerDeath -= HandleDeath;
     }
 }

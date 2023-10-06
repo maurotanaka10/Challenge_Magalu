@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private PlayerManager _playerManager;
+    [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private ObstacleManager _obstacleManager;
     #endregion
 
@@ -19,8 +20,7 @@ public class GameManager : MonoBehaviour
     public static event Action<bool> OnAttackInputContextReceived;
     public static event Action<bool> OnUsingItemInputContextReceived;
     public static event Action<bool> OnPlayerDeathReceived;
-    public static event Action<bool> OnStageCompleteReceived;
-    public event Action<bool> OnGameIsOver; 
+    public event Action<bool, bool> OnGameIsOver; 
     #endregion
 
     #region Delegates
@@ -29,9 +29,10 @@ public class GameManager : MonoBehaviour
 
     public static PlayerLifeReference PlayerLifeRef;
     #endregion
+    
+    [SerializeField] public bool _gameIsOver;
 
-    [SerializeField] private int _stageComplete;
-    [SerializeField] private bool _gameIsOver;
+    private bool _wasCompleted;
     private void Awake()
     {
         _inputManager.OnMove += OnMoveInputHandler;
@@ -39,7 +40,6 @@ public class GameManager : MonoBehaviour
         _inputManager.OnAttack += OnAttackInputHandler;
         _inputManager.OnUsingItem += OnUsingItemInputHandler;
         _obstacleManager.OnPlayerDeathHandler += OnPlayerDeathHandler;
-        _playerManager.HandleStageComplete += OnStageCompleteHandler;
         
         Cursor.lockState = CursorLockMode.Locked;
         _gameIsOver = false;
@@ -50,18 +50,14 @@ public class GameManager : MonoBehaviour
         if (PlayerLifeRef() == 0)
         {
             _gameIsOver = true;
-            OnGameIsOver?.Invoke(_gameIsOver);
+            _wasCompleted = false;
+            OnGameIsOver?.Invoke(_gameIsOver, _wasCompleted);
         }
-    }
-
-    private void OnStageCompleteHandler(bool stageComplete)
-    {
-        if (stageComplete) _stageComplete++;
-
-        if (_stageComplete == 3)
+        else if (_enemyManager._enemyLife == 0)
         {
             _gameIsOver = true;
-            OnGameIsOver?.Invoke(_gameIsOver);
+            _wasCompleted = true;
+            OnGameIsOver?.Invoke(_gameIsOver, _wasCompleted);
         }
     }
 

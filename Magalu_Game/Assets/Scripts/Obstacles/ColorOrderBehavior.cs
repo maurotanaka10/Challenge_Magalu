@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class ColorOrderBehavior : MonoBehaviour
 {
+    [SerializeField] private ButtonAudio _buttonAudio;
+    
     [Header("Button Variables")] public bool canPressButton;
     [SerializeField] private Transform buttonPosition;
     [SerializeField] private LayerMask playerMask;
@@ -18,25 +20,16 @@ public class ColorOrderBehavior : MonoBehaviour
     [SerializeField] private Color StartColor;
     public int obstacle1Index, obstacle2Index, obstacle3Index, obstacle4Index;
 
-    private bool _challengeWasStart;
-
     private void Awake()
     {
         ObstacleManager.OnUsingItemHandler += ShowChallenge;
-        _challengeWasStart = false;
+        StartCoroutine(StartChallenge());
     }
 
     private void ShowChallenge(bool context)
     {
-        if (!_challengeWasStart)
-        {
-            StartCoroutine(StartChallenge());
-            _challengeWasStart = true;
-        }
-        else if (_challengeWasStart)
-        {
-            StartCoroutine(ShowChallengeAgain());
-        }
+        StartCoroutine(ShowChallengeAgain());
+        _buttonAudio.PlayButtonSound();
     }
 
     void Update()
@@ -47,41 +40,49 @@ public class ColorOrderBehavior : MonoBehaviour
     IEnumerator ShowChallengeAgain()
     {
         yield return new WaitForSeconds(0.3f);
+        _buttonAudio.PlayShowLightSound();
         if (obstacle1Index == 1)
         {
             obstacleColor[0].GetComponent<Renderer>().material.color = redColor;
         }
-        else if(obstacle1Index == 2)
+        else if (obstacle1Index == 2)
         {
             obstacleColor[0].GetComponent<Renderer>().material.color = blueColor;
         }
+
         yield return new WaitForSeconds(0.3f);
+        _buttonAudio.PlayShowLightSound();
         if (obstacle2Index == 1)
         {
             obstacleColor[1].GetComponent<Renderer>().material.color = redColor;
         }
-        else if(obstacle2Index == 2)
+        else if (obstacle2Index == 2)
         {
             obstacleColor[1].GetComponent<Renderer>().material.color = blueColor;
         }
+
         yield return new WaitForSeconds(0.3f);
+        _buttonAudio.PlayShowLightSound();
         if (obstacle3Index == 1)
         {
             obstacleColor[2].GetComponent<Renderer>().material.color = redColor;
         }
-        else if(obstacle3Index == 2)
+        else if (obstacle3Index == 2)
         {
             obstacleColor[2].GetComponent<Renderer>().material.color = blueColor;
         }
+
         yield return new WaitForSeconds(0.3f);
+        _buttonAudio.PlayShowLightSound();
         if (obstacle4Index == 1)
         {
             obstacleColor[3].GetComponent<Renderer>().material.color = redColor;
         }
-        else if(obstacle4Index == 2)
+        else if (obstacle4Index == 2)
         {
             obstacleColor[3].GetComponent<Renderer>().material.color = blueColor;
         }
+
         yield return new WaitForSeconds(0.5f);
         obstacleColor[0].GetComponent<Renderer>().material.color = StartColor;
         obstacleColor[1].GetComponent<Renderer>().material.color = StartColor;

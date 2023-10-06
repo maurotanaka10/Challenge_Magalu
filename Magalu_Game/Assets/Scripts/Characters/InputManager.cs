@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInputSystem _playerInputSystem;
 
+    [SerializeField] private GameManager _gameManager;
+
     public event Action<InputAction.CallbackContext> OnMove;
     public event Action<bool> OnJump;
     public event Action<bool> OnAttack;
@@ -14,6 +16,8 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         _playerInputSystem = new PlayerInputSystem();
+
+        _gameManager.OnGameIsOver += StopInputs;
 
         _playerInputSystem.Ninja.Run.started += OnMovementInput;
         _playerInputSystem.Ninja.Run.canceled += OnMovementInput;
@@ -27,6 +31,12 @@ public class InputManager : MonoBehaviour
 
         _playerInputSystem.Ninja.Attack.started += OnAttackingInput;
         _playerInputSystem.Ninja.Attack.canceled += OnAttackingInput;
+    }
+
+    private void StopInputs(bool gameIsOver, bool waCompleted)
+    {
+        if(!gameIsOver)return;
+        _playerInputSystem.Disable();
     }
 
     void OnMovementInput(InputAction.CallbackContext context)
@@ -70,5 +80,7 @@ public class InputManager : MonoBehaviour
 
         _playerInputSystem.Ninja.Attack.started -= OnAttackingInput;
         _playerInputSystem.Ninja.Attack.canceled -= OnAttackingInput;
+        
+        _gameManager.OnGameIsOver -= StopInputs;
     }
 }

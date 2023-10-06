@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
     private CharacterController _characterControllerRef;
+    [SerializeField] private GameManager _gameManager;
 
     private int _velocityHash;
     private int _isJumpingHash;
@@ -49,6 +46,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         _characterControllerRef = PlayerManager.CharacterControllerRef?.Invoke();
         MoveAnimation();
+        
+        if (_gameManager._gameIsOver == true)
+        {
+            _animator.SetBool("gameIsOver", true);
+        }
     }
 
     private void MoveAnimation()
@@ -93,5 +95,12 @@ public class PlayerAnimation : MonoBehaviour
         _isJumpingHash = Animator.StringToHash("isJumping");
         _isSlashingHash = Animator.StringToHash("isSlashing");
         _isDeathHash = Animator.StringToHash("isDeath");
+    }
+
+    private void OnDisable()
+    {
+        PlayerManager.HandleJumpInput -= JumpAnimation;
+        PlayerManager.HandleAttackInput -= AttackAnimation;
+        PlayerManager.HandlePlayerDeath -= DeathAnimation;
     }
 }

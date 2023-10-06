@@ -1,18 +1,16 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttackComponent : MonoBehaviour
 {
     [SerializeField] private EnemyManager _enemyManager;
-
+    
     [SerializeField] private GameObject _playerSword;
     [SerializeField] private Transform _swordPosition;
     [SerializeField] private float _attackRange;
     [SerializeField] private LayerMask _enemyMask;
-
-    private int _enemyLifes;
-    private bool _isInvulnerable;
 
     private void Awake()
     {
@@ -26,21 +24,35 @@ public class PlayerAttackComponent : MonoBehaviour
         if (attackPressed)
         {
             _playerSword.SetActive(true);
-            _isInvulnerable = true;
-
-            Collider[] hittedEnemies = Physics.OverlapSphere(_swordPosition.position, _attackRange, _enemyMask);
-            foreach(Collider hittedEnemy in hittedEnemies)
-            {
-                _enemyManager._enemyLife--;
-                print("acertou um inimigo");
-            }
         }
+    }
+
+    private IEnumerator EnabelHitAfterDelay(EnemyController enemyController)
+    {
+        yield return new WaitForSeconds(0.5f);
+        enemyController._canBeHit = true;
     }
 
     private void SetActionFalseSword()
     {
         _playerSword.SetActive(false);
-        _isInvulnerable = false;
+    }
+
+    private void SetColliderOn()
+    {
+        Collider[] hittedEnemies = Physics.OverlapSphere(_swordPosition.position, _attackRange, _enemyMask);
+        foreach(Collider hittedEnemy in hittedEnemies)
+        {
+            print($"acertou alguem");
+            EnemyController _enemyController = hittedEnemy.GetComponent<EnemyController>();
+            if (_enemyController != null & _enemyController._canBeHit)
+            {
+                print("acertou um inimigo");
+                _enemyController._canBeHit = false;
+                _enemyManager._enemyLife--;
+                StartCoroutine(EnabelHitAfterDelay(_enemyController));
+            }
+        }
     }
 
     private void OnDrawGizmos()
