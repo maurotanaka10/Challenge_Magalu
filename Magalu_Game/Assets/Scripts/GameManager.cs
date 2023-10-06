@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerManager _playerManager;
     [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private ObstacleManager _obstacleManager;
+    [SerializeField] private HUDAudio _hudAudio;
     #endregion
 
     #region Actions
@@ -51,12 +52,14 @@ public class GameManager : MonoBehaviour
         {
             _gameIsOver = true;
             _wasCompleted = false;
+            _hudAudio.PlayLoseSound();
             OnGameIsOver?.Invoke(_gameIsOver, _wasCompleted);
         }
         else if (_enemyManager._enemyLife == 0)
         {
             _gameIsOver = true;
             _wasCompleted = true;
+            _hudAudio.PlayWinSound();
             OnGameIsOver?.Invoke(_gameIsOver, _wasCompleted);
         }
     }

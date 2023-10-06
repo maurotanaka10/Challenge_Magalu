@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAudio : MonoBehaviour
 {
     private AudioSource _audioSource;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private AudioClip _idleClip;
     [SerializeField] private AudioClip _patrolClip;
     [SerializeField] private AudioClip _chaseClip;
@@ -31,6 +32,9 @@ public class EnemyAudio : MonoBehaviour
     private void Update()
     {
         _audioSource.volume = _volume / 100;
+
+        if (_gameManager._gameIsOver)
+            _soundPlaying = true;
     }
 
     private void IdleSound(EStatesEnemy currentState)
@@ -96,7 +100,7 @@ public class EnemyAudio : MonoBehaviour
     IEnumerator TimerToPlayOtherSound()
     {
         _soundPlaying = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         _soundPlaying = false;
     }
 

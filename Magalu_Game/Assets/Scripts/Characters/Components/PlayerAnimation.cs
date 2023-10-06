@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -5,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
     private CharacterController _characterControllerRef;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private PlayerManager _playerManager;
 
     private int _velocityHash;
     private int _isJumpingHash;
@@ -40,6 +42,15 @@ public class PlayerAnimation : MonoBehaviour
         {
             _animator.SetBool(_isDeathHash, false);
         }
+
+        if (_playerManager._lifes == 0 && !isDeathAnimation)
+        {
+            _animator.SetBool(_isDeathHash, true);
+        }
+        else if (_playerManager._lifes == 0 && isDeathAnimation)
+        {
+            _animator.SetBool(_isDeathHash, true);
+        }
     }
 
     private void Update()
@@ -47,7 +58,7 @@ public class PlayerAnimation : MonoBehaviour
         _characterControllerRef = PlayerManager.CharacterControllerRef?.Invoke();
         MoveAnimation();
         
-        if (_gameManager._gameIsOver == true)
+        if (_gameManager._gameIsOver)
         {
             _animator.SetBool("gameIsOver", true);
         }

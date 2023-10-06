@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
-    [SerializeField] private HUDAudio _hudAudio;
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _losePanel;
     [SerializeField] private GameObject _gamePanel;
@@ -26,12 +25,10 @@ public class UIManager : MonoBehaviour
         if (wasCompleted)
         {
             _winPanel.SetActive(true);
-            _hudAudio.PlayWinSound();
         }
         else
         {
             _losePanel.SetActive(true);
-            _hudAudio.PlayLoseSound();
         }
     }
 }

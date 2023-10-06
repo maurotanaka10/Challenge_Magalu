@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     #region Components
 
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private PlayerManager _playerManager;
     private NavMeshAgent _navMeshAgent;
     private Rigidbody _rigidbody;
